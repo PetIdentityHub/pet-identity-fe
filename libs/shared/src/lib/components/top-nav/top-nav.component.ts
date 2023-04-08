@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@pet-identity/ui-kit';
 
 @Component({
-  selector: 'pet-identity-home',
+  selector: 'shared-top-nav',
   standalone: true,
   imports: [CommonModule, ButtonComponent],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: './top-nav.component.html',
+  styleUrls: ['./top-nav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class TopNavComponent {}

@@ -1,0 +1,12 @@
+.ui-button {
+    height: auto !important;
+    border-radius: var(--tui-radius-s) !important;
+
+    & > div {
+        padding: 0.5rem var(--tui-padding-s) !important;
+
+        & > span {
+            font: var(--tui-font-text-s) !important;
+        }
+    }
+}

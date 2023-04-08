@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~15.2.0",
+    "@angular/cdk": "^15.0.0",
     "@angular/common": "~15.2.0",
     "@angular/compiler": "~15.2.0",
     "@angular/core": "~15.2.0",
@@ -18,6 +19,13 @@
     "@angular/platform-browser-dynamic": "~15.2.0",
     "@angular/router": "~15.2.0",
     "@nrwl/angular": "15.9.2",
+    "@taiga-ui/addon-mobile": "^3.23.1",
+    "@taiga-ui/addon-table": "^3.23.1",
+    "@taiga-ui/cdk": "^3.23.1",
+    "@taiga-ui/core": "^3.23.1",
+    "@taiga-ui/icons": "^3.23.1",
+    "@taiga-ui/kit": "^3.23.1",
+    "@taiga-ui/styles": "^3.23.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
@@ -25,7 +33,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~15.2.0",
     "@angular-devkit/core": "~15.2.0",
-    "@angular-devkit/schematics": "~15.2.0", 
+    "@angular-devkit/schematics": "~15.2.0",
     "@angular-eslint/eslint-plugin": "~15.0.0",
     "@angular-eslint/eslint-plugin-template": "~15.0.0",
     "@angular-eslint/template-parser": "~15.0.0",

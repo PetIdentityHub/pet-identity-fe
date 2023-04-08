@@ -1,0 +1,44 @@
+:host {
+  background-color: var(--tui-secondary);
+  color: var(--tui-text-01);
+  padding: 0.5rem 2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 5px 0 var(--tui-base-04);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1480px;
+
+  &-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--tui-primary);
+    text-decoration: none;
+  }
+
+  &-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: 60px;
+
+    .nav-item {
+      padding: 0 1rem;
+      cursor: pointer;
+      color: var(--tui-text-01);
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--tui-primary);
+      }
+    }
+  }
+}
