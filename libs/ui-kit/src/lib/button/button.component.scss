@@ -1,9 +1,9 @@
 .ui-button {
     height: auto !important;
-    border-radius: var(--tui-radius-s) !important;
+    border-radius: var(--tui-radius-xl) !important;
 
     & > div {
-        padding: 0.5rem var(--tui-padding-s) !important;
+        padding: 0.3rem 2rem !important;
 
         & > span {
             font: var(--tui-font-text-s) !important;

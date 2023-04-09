@@ -17,7 +17,12 @@
         "tsConfig": "apps/pet-identity/tsconfig.app.json",
         "assets": [
           "apps/pet-identity/src/favicon.ico",
-          "apps/pet-identity/src/assets"
+          "apps/pet-identity/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/shared/src/lib/assets",
+            "output": "assets"
+          }
         ],
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",

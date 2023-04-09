@@ -2,10 +2,11 @@ import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { TopNavComponent } from "@pet-identity/shared";
 import { TuiRootModule } from "@taiga-ui/core";
+import { CommonModule } from "@angular/common";
 
 @Component({
   standalone: true,
-  imports: [RouterModule, TuiRootModule, TopNavComponent],
+  imports: [CommonModule, RouterModule, TuiRootModule, TopNavComponent],
   selector: "pet-identity-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],

@@ -5,7 +5,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  box-shadow: 0 0 5px 0 var(--tui-base-04);
+  box-shadow: 0 0 5px 0 var(--tui-base-05);
+  position: relative;
+  z-index: 10000;
 }
 
 .navbar {
