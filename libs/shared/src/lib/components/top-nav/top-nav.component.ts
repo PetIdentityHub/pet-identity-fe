@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@pet-identity/ui-kit';
 
@@ -10,4 +10,10 @@ import { ButtonComponent } from '@pet-identity/ui-kit';
   styleUrls: ['./top-nav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TopNavComponent {}
+export class TopNavComponent {
+  @Output() onLogin = new EventEmitter<boolean>();
+
+  login() {
+    this.onLogin.emit(true);
+  }
+}
