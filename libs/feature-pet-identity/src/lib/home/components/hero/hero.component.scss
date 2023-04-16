@@ -1,71 +1,65 @@
 :host {
-    background: var(--tui-base-02);
-    color: var(--tui-text-01);
-    padding: 0.5rem 2.5rem;
+  background: var(--tui-base-02);
+  color: var(--tui-text-01);
+  padding: 0.5rem 2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 25rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    background: url('/assets/images/hero-img.jpg') no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    height: 25rem;
-    position: relative;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  @media screen and (min-width: 1240px) {
+    height: 30rem;
 
     &::before {
-        content: "";
-        background: url("/assets/images/hero-img.jpg") no-repeat;
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.5;
-        z-index: 1;
+      background-position: center top -10rem;
     }
-
-    @media screen and (min-width: 1240px) {
-        height: 30rem;
-
-        &::before {
-            background-position: center top -10rem;
-        }
-    }
+  }
 }
 
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+
+  &-content {
+    width: 30%;
+    max-width: 600px;
 
     &__title {
-        font-size: 2.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
     }
 
-    &__subtitle {
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin-bottom: 1rem;
-    }
+    &__search {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
-    &__button {
-        font-size: 1.5rem;
-        font-weight: 600;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        background: var(--tui-base-01);
-        color: var(--tui-text-01);
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-            background: var(--tui-base-02);
+        ui-input {
+            width: 85%;
         }
     }
+  }
 }

@@ -2,16 +2,14 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent, TopNavComponent } from '@pet-identity/shared';
 import { TuiRootModule } from '@taiga-ui/core';
-import { CommonModule } from '@angular/common';
 import { DataAccessModule, WalletFacade, WalletType } from '@pet-identity/feature-pet-identity';
 
 
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
-    RouterModule,
     TuiRootModule,
+    RouterModule,
     TopNavComponent,
     FooterComponent,
     DataAccessModule

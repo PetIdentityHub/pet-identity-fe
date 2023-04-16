@@ -4,8 +4,6 @@ import { StoreModule } from '@ngrx/store';
 import * as walletStore from './store/wallet/wallet.reducer';
 
 
-
-
 @NgModule({
   declarations: [],
   imports: [

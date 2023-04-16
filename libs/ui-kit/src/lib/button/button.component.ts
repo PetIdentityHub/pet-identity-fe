@@ -15,6 +15,7 @@ import {TuiButtonModule} from '@taiga-ui/core';
 export class ButtonComponent implements OnInit{
   @Input() type: 'primary' | 'secondary' | 'secondary-destructive' | 'accent' | 'flat' | 'outline' = 'primary';
   @Input() disabled: boolean = false;
+  @Input() height: 'tall' | 'regular' = 'regular';
 
   @HostBinding('className') buttonType!: string;
 
