@@ -1,4 +1,3 @@
-export * from './lib/home/home-routing.module'
 export * from './lib/home/home.module'
 export * from './lib/home/pages/home/home.component';
 export * from './lib/data-access/data-access.module';
@@ -8,3 +7,4 @@ export * from './lib/data-access/store/wallet/wallet.reducer';
 export * from './lib/data-access/store/wallet/wallet.selectors';
 export * from './lib/data-access/store/wallet/wallet.reducer';
 export * from './lib/data-access/facades/wallet.facade';
+export * from './lib/search-results/search-results.module';
