@@ -7,4 +7,7 @@ export * from './lib/data-access/store/wallet/wallet.reducer';
 export * from './lib/data-access/store/wallet/wallet.selectors';
 export * from './lib/data-access/store/wallet/wallet.reducer';
 export * from './lib/data-access/facades/wallet.facade';
+export * from './lib/data-access/services/pets.service';
+export * from './lib/data-access/models/pet.model';
+export * from './lib/data-access/models/user.model';
 export * from './lib/search-results/search-results.module';
