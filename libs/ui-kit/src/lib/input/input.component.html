@@ -3,5 +3,5 @@
     [tuiTextfieldIconLeft]="icon"
     >
   <ng-content></ng-content>
-  <input tuiTextfield />
+  <input [type]="type" tuiTextfield [formControl]="control" />
 </tui-input>
