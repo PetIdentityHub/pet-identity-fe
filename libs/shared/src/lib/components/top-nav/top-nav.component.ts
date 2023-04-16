@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@pet-identity/ui-kit';
 import { RouterLink } from '@angular/router';
+import { WalletFacade } from '@pet-identity/feature-pet-identity';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'shared-top-nav',
@@ -12,9 +14,14 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavComponent {
+  @Input() connected: boolean | null = false;
   @Output() onLogin = new EventEmitter<boolean>();
 
   login() {
     this.onLogin.emit(true);
+  }
+
+  logout() {
+    //this.walletFacade.disconnect();
   }
 }
