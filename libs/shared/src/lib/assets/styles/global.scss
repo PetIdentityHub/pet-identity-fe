@@ -3,9 +3,13 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 html {
-  background-color: var(--tui-secondary);
+  background-color: #fff;
+}
+
+tui-root {
+  height: 100%;
 }

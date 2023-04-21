@@ -1,1 +1,81 @@
-<p>pet-details works!</p>
+<ng-container *ngIf="getPet$ | async as pet">
+    <ng-container *ngIf="pet">
+        <div class="pet-details">
+            <div class="pet-details__owner">
+                <tui-island>
+                    <h3 class="tui-island__title">Owner Info</h3>
+                    <div class="pet-details__owner-contact">
+                        <p class="tui-island__category">Contact Details</p>
+                        <p class="tui-island__paragraph">
+                            <strong>name:</strong>
+                            {{pet.owner.name}}
+                        </p>
+                        <p class="tui-island__paragraph">
+                            <strong>email:</strong>
+                            {{pet.owner.email}}
+                        </p>
+                        <p class="tui-island__paragraph">
+                            <strong>phone:</strong>
+                            {{pet.owner.phone}}
+                        </p>
+                        <p class="tui-island__paragraph">
+                            <strong>address:</strong>
+                            {{pet.owner.address}}
+                        </p>
+                    </div>
+                    <div class="pet-details__owner-social">
+                        <p class="tui-island__category">Social Media</p>
+                        <div class="pet-details__owner-social__icons">
+                            <a *ngIf="pet.owner.socials?.facebook" href="{{pet.owner.socials?.facebook}}" role="link" target="_blank">
+                                <img src="/assets/images/facebook.svg" alt="facebook icon" />
+                            </a>
+                            <a *ngIf="pet.owner.socials?.twitter" href="{{pet.owner.socials?.twitter}}" role="link" target="_blank">
+                                <img src="/assets/images/twitter.svg" alt="twitter icon" />
+                            </a>
+                            <a *ngIf="pet.owner.socials?.instagram" href="{{pet.owner.socials?.instagram}}" role="link" target="_blank">
+                                <img src="/assets/images/instagram.svg" alt="instagram icon" />
+                            </a>
+                            <a *ngIf="pet.owner.socials?.telegram" href="{{pet.owner.socials?.telegram}}" role="link" target="_blank">
+                                <img src="/assets/images/telegram.svg" alt="telegram icon" />
+                            </a>
+                        </div>
+                    </div>
+                </tui-island>
+            </div>
+            <div class="pet-details__info">
+                <div class="pet-details__image">
+                    <img *ngIf="pet.photo" class="photo" [src]="pet.photo" role="presentation" alt="pet photo" />
+                    <img *ngIf="!pet.photo" src="/assets/images/happy_dog_icon.webp" role="presentation" alt="placeholder image" />
+                </div>
+                <tui-island>
+                    <h3 class="tui-island__title">{{pet.name}}</h3>
+                    <p class="tui-island__category">{{pet.species}} | {{pet.breed}}</p>
+                    <div class="pet-details__info-details">
+                        <div>
+                            <p class="tui-island__paragraph">
+                                <strong>Age:</strong>
+                                {{pet.age}}
+                            </p>
+                            <p class="tui-island__paragraph">
+                                <strong>Microchip:</strong>
+                                {{pet.chipNumber}}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="tui-island__paragraph">
+                                <strong>Distinguish Marks:</strong>
+                                {{pet.distinguishingMarks}}
+                            </p>
+                        </div>
+                    </div>
+
+                </tui-island>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!pet">
+        <div class="pet-details">
+            <h1>Sorry, we couldn't find that pet.</h1>
+        </div>
+    </ng-container>
+</ng-container>

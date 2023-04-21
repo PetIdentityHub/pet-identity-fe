@@ -8,7 +8,7 @@ export interface Pet {
     breed: string;
     chipNumber: string;
     owner: User;
-    photo: string;
+    photo?: string;
     distinguishingMarks: string;
 }
 

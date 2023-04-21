@@ -7,4 +7,12 @@ export interface User {
     phone: string;
     address: string;
     pets: Pet[];
+    socials?: Socials;
+}
+
+export interface Socials {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+    telegram?: string;
 }
