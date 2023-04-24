@@ -16,7 +16,7 @@ export const environment = {
   networkId: '', //Binance Smart Chain
   metamaskDeepLink:'',
   chainApiUrl: 'https://api-testnet.bscscan.com/api',
-  petNftContractAddress: '0x2d8F5dD22a5bA26A8713eBF01e086E56984Bdbea'
+  petNftContractAddress: '0x2d8f5dd22a5ba26a8713ebf01e086e56984bdbea'
   
 };
 

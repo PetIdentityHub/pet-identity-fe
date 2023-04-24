@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable, from, of, switchMap } from 'rxjs';
+import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { BigNumber, BigNumberish, Signer, providers } from 'ethers';
 import {
     PetNftContract,
-    PetNftContractFactory,
 } from '../classes/pet-nft.class';
 import { APP_CONFIG, AppConfig } from '@pet-identity/shared';
 import { HttpClient } from '@angular/common/http';
+import { ContractsService } from './contracts.service';
 
 @Injectable({
     providedIn: 'root',
@@ -18,9 +18,17 @@ export class PetsService {
 
     constructor(
         private httpClient: HttpClient,
+        private contractsService: ContractsService,
         @Inject(APP_CONFIG) private readonly appConfig: AppConfig
     ) {}
 
+    private getPetNftContract(signerOrProvider: Signer | providers.Web3Provider | undefined): Observable<PetNftContract> {
+        return this.contractsService.getAbi(this.appConfig.petNftContractAddress).pipe(
+            tap(abi => console.log('Received ABI:', abi)),
+            map(abi => new PetNftContract(this.appConfig.petNftContractAddress, abi, signerOrProvider))
+        );
+    }
+    
     private getSigner(): Signer | null {
         if (window.ethereum != null) {
             this.provider = new providers.Web3Provider(window.ethereum);
@@ -60,42 +68,40 @@ export class PetsService {
     getPetMetadataByChipNumber(chipNumber: string): Observable<any> {
         const signer = this.getSigner();
         if (signer) {
-            const petNftContract = PetNftContractFactory.connect(
-                this.appConfig.petNftContractAddress,
-                signer
-            );
-            return this.getByChipNumber(chipNumber, petNftContract).pipe(
-                switchMap((profileId) =>
-                    this.getPetMetadataUrl(profileId, petNftContract)
-                ),
-                switchMap((ipfsurl) => {
-                    let cid = ipfsurl.split('ipfs://')[1].replace('/', '');
-                    return this.getPetMetadata(cid);
-                })
+            return this.getPetNftContract(signer).pipe(
+                switchMap(petNftContract => 
+                    this.getByChipNumber(chipNumber, petNftContract).pipe(
+                        switchMap(profileId => this.getPetMetadataUrl(profileId, petNftContract)),
+                        switchMap(ipfsurl => {
+                            let cid = ipfsurl.split('ipfs://')[1].replace('/', '');
+                            return this.getPetMetadata(cid);
+                        })
+                    )
+                )
             );
         } else {
-            return of(null);
+            return of('');
         }
     }
-
+    
     getPetMetadataByName(name: string): Observable<any> {
         const signer = this.getSigner();
         if (signer) {
-            const petNftContract = PetNftContractFactory.connect(
-                this.appConfig.petNftContractAddress,
-                signer
-            );
-            return this.getByName(name, petNftContract).pipe(
-                switchMap((profileId) =>
-                    this.getPetMetadataUrl(profileId, petNftContract)
-                ),
-                switchMap((ipfsurl) => {
-                    let cid = ipfsurl.split('ipfs://')[1].replace('/', '');
-                    return this.getPetMetadata(cid);
-                })
+            return this.getPetNftContract(signer).pipe(
+                switchMap(petNftContract => 
+                    this.getByName(name, petNftContract).pipe(
+                        switchMap(profileId => this.getPetMetadataUrl(profileId, petNftContract)),
+                        switchMap(ipfsurl => {
+                            let cid = ipfsurl.split('ipfs://')[1].replace('/', '');
+                            return this.getPetMetadata(cid);
+                        })
+                    )
+                )
             );
         } else {
-            return of(null);
+            return of('');
         }
     }
+    
+    
 }
