@@ -1,14 +1,15 @@
 import { User } from "./user.model";
 
 export interface Pet {
-    uuid: string;
+    uuid?: string;
     name: string;
-    age: number; // in months
+    dob: Date;
     species: Species;
     breed: string;
     chipNumber: string;
     owner: User;
     photo?: string;
+    color?: string;
     distinguishingMarks: string;
 }
 

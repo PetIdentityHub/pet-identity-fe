@@ -11,5 +11,5 @@ export interface AppConfig {
   networkId: string;
   metamaskDeepLink: string;
   chainApiUrl: string;
-  petNftContractAddress: string;
+  proxyContractAddress: string;
 }

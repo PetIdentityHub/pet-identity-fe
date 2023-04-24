@@ -20,9 +20,15 @@
   &-brand {
     font-size: 1.5rem;
     font-weight: 700;
+    display: inline-flex;
+    align-items: flex-end;
     color: var(--tui-primary);
     text-decoration: none;
     cursor: pointer;
+
+    h6 {
+      line-height: 14px;
+    }
   }
 
   &-nav {

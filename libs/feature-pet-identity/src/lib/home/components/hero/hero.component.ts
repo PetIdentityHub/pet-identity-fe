@@ -19,7 +19,5 @@ export class HeroComponent {
     this.formGroup = new FormGroup({
       search: new FormControl('')
     });
-
-    this.formGroup.get('search')?.valueChanges.subscribe(console.log);
   }
 }

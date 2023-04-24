@@ -1,8 +1,7 @@
-import { Inject, Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
-import { HttpClient } from '@angular/common/http';
-import { APP_CONFIG, AppConfig } from "@pet-identity/shared";
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
 import { ContractInterface } from "ethers";
+import { petProfileNFTAbi } from "../abis/petProfileNFT.abi";
 
 
 @Injectable({
@@ -10,13 +9,11 @@ import { ContractInterface } from "ethers";
 })
 export class ContractsService {
 
-    constructor(private http: HttpClient, @Inject(APP_CONFIG) private readonly appConfig: AppConfig) {}
+    constructor() {}
 
-    getAbi(contractId: string): Observable<ContractInterface> {
-      return this.http.get<{result: string}>(`${this.appConfig.chainApiUrl}?module=contract&action=getabi&address=${contractId}`).pipe(
-          map(response => JSON.parse(response.result))
-      );
-  }
+    getPetProfileNFTAbi(): Observable<ContractInterface> {
+      return of(petProfileNFTAbi.contract.abi);
+    }
     
 }
 

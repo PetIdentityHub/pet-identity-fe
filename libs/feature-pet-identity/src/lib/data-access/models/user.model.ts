@@ -6,7 +6,7 @@ export interface User {
     email: string;
     phone: string;
     address: string;
-    pets: Pet[];
+    pets?: Pet[];
     socials?: Socials;
 }
 

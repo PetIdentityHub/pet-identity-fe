@@ -3,27 +3,27 @@ import { ContractsService } from "../services/contracts.service";
 
 export class PetNftContractFactory {
     static async connect(
-        petNftContractAddress: string,
+        proxyContractAddress: string,
         signerOrProvider: Signer | providers.Web3Provider | undefined,
         contractsService: ContractsService,
     ): Promise<PetNftContract> {
-        const abi = await contractsService.getAbi(petNftContractAddress).toPromise();
-        return new PetNftContract(petNftContractAddress, abi as ContractInterface, signerOrProvider);
+        const abi = await contractsService.getPetProfileNFTAbi().toPromise();
+        return new PetNftContract(proxyContractAddress, abi as ContractInterface, signerOrProvider);
     }
 }
 
 export class PetNftContract extends BaseContract {
     private _contract: Contract;
-    private _petNftContractAddress: string;
+    private _proxyContractAddress: string;
 
     constructor(
-        petNftContractAddress: string,
+        proxyContractAddress: string,
         abi: ContractInterface,
         signerOrProvider: Signer | providers.Web3Provider | undefined,
     ) {
-        super(petNftContractAddress, abi, signerOrProvider);
-        this._contract = new Contract(petNftContractAddress, abi, signerOrProvider);
-        this._petNftContractAddress = petNftContractAddress;
+        super(proxyContractAddress, abi, signerOrProvider);
+        this._contract = new Contract(proxyContractAddress, abi, signerOrProvider);
+        this._proxyContractAddress = proxyContractAddress;
     }
 
     public getProfileIdByChipId(chipId: string): Promise<any> {

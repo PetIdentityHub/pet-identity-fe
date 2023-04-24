@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { BigNumber, BigNumberish, Signer, providers } from 'ethers';
-import {
-    PetNftContract,
-} from '../classes/pet-nft.class';
+import { PetNftContract } from '../classes/pet-nft.class';
 import { APP_CONFIG, AppConfig } from '@pet-identity/shared';
 import { HttpClient } from '@angular/common/http';
 import { ContractsService } from './contracts.service';
+import { Pet } from '../models/pet.model';
+import { petsMock } from '../mocks/pets.mock';
 
 @Injectable({
     providedIn: 'root',
@@ -22,19 +22,30 @@ export class PetsService {
         @Inject(APP_CONFIG) private readonly appConfig: AppConfig
     ) {}
 
-    private getPetNftContract(signerOrProvider: Signer | providers.Web3Provider | undefined): Observable<PetNftContract> {
-        return this.contractsService.getAbi(this.appConfig.petNftContractAddress).pipe(
-            map(abi => new PetNftContract(this.appConfig.petNftContractAddress, abi, signerOrProvider))
-        );
+    private getPetNftContract(
+        signerOrProvider: Signer | providers.Web3Provider | undefined
+    ): Observable<PetNftContract> {
+        return this.contractsService
+            .getPetProfileNFTAbi()
+            .pipe(
+                map(
+                    (abi) =>
+                        new PetNftContract(
+                            this.appConfig.proxyContractAddress,
+                            abi,
+                            signerOrProvider
+                        )
+                )
+            );
     }
-    
+
     private getSigner(): Signer | null {
         if (window.ethereum != null) {
             this.provider = new providers.Web3Provider(window.ethereum);
             this.signer = this.provider.getSigner();
             return this.signer;
         } else {
-            console.log('No provider');
+            console.error('No provider');
             return null;
         }
     }
@@ -60,47 +71,59 @@ export class PetsService {
         return from(petNftContract.tokenURI(profileId));
     }
 
-    private getPetMetadata(cid: string): Observable<any> {
-        return this.httpClient.get<any>(`${this.ipfsBaseUrl}${cid}`);
+    private getPetMetadata(cid: string): Observable<Pet> {
+        return this.httpClient.get<Pet>(`${this.ipfsBaseUrl}${cid}`);
     }
 
-    getPetMetadataByChipNumber(chipNumber: string): Observable<any> {
+    getPetMetadataByChipNumber(chipNumber: string): Observable<Pet> {
         const signer = this.getSigner();
         if (signer) {
             return this.getPetNftContract(signer).pipe(
-                switchMap(petNftContract => 
+                switchMap((petNftContract) =>
                     this.getByChipNumber(chipNumber, petNftContract).pipe(
-                        switchMap(profileId => this.getPetMetadataUrl(profileId, petNftContract)),
-                        switchMap(ipfsurl => {
-                            let cid = ipfsurl.split('ipfs://')[1].replace('/', '');
+                        switchMap((profileId) =>
+                            this.getPetMetadataUrl(profileId, petNftContract)
+                        ),
+                        switchMap((ipfsurl) => {
+                            let cid = ipfsurl
+                                .split('ipfs://')[1]
+                                .replace('/', '');
                             return this.getPetMetadata(cid);
                         })
                     )
                 )
             );
         } else {
-            return of('');
+            return of({} as Pet);
         }
     }
-    
-    getPetMetadataByName(name: string): Observable<any> {
+
+    getPetMetadataByName(name: string): Observable<Pet> {
         const signer = this.getSigner();
         if (signer) {
             return this.getPetNftContract(signer).pipe(
-                switchMap(petNftContract => 
+                switchMap((petNftContract) =>
                     this.getByName(name, petNftContract).pipe(
-                        switchMap(profileId => this.getPetMetadataUrl(profileId, petNftContract)),
-                        switchMap(ipfsurl => {
-                            let cid = ipfsurl.split('ipfs://')[1].replace('/', '');
+                        switchMap((profileId) =>
+                            this.getPetMetadataUrl(profileId, petNftContract)
+                        ),
+                        switchMap((ipfsurl) => {
+                            let cid = ipfsurl
+                                .split('ipfs://')[1]
+                                .replace('/', '');
                             return this.getPetMetadata(cid);
                         })
                     )
                 )
             );
         } else {
-            return of('');
+            return of({} as Pet);
         }
     }
-    
-    
+
+    getMockPetMetadata(id: string): Observable<Pet | undefined> {
+        return of(petsMock.find((pet) => pet.chipNumber === id));
+    }
+        
+
 }
