@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { BrowserProvider, Network, ethers } from 'ethers';
+import { ethers, providers } from 'ethers';
 import { Store } from '@ngrx/store';
 import { WalletType } from '../models/wallet.model';
 
@@ -25,7 +25,7 @@ const DISCONNECT = 'disconnect';
 
 @Injectable({ providedIn: 'root' })
 export class WalletService {
-  private provider: BrowserProvider | null = null;
+  private provider: providers.Web3Provider | null = null;
 
   constructor(
     private store: Store,
@@ -38,7 +38,7 @@ export class WalletService {
 
   //Metamask handlers
   handleAccountsChangedMetamask = (accounts: string[]): void => {
-    if (!Array.isArray(accounts)) {
+    if (Array.isArray(accounts)) {
       this.store.dispatch(
         WalletActions.accountsChanged({
           account: accounts[0],
@@ -86,22 +86,23 @@ export class WalletService {
     }
   };
 
-  private createProviderHooks(): void {
-    window.ethereum.on(ACCOUNTS_CHANGED, this.handleAccountsChangedMetamask);
-    window.ethereum.on(CHAIN_CHANGED, this.handleChainChangedMetamask);
-    window.ethereum.on(DISCONNECT, this.handleDisconnectMetamask);
+  private createProviderHooks(provider: any): void {
+    provider.on(ACCOUNTS_CHANGED, this.handleAccountsChangedMetamask);
+    provider.on(CHAIN_CHANGED, this.handleChainChangedMetamask);
+    provider.on(DISCONNECT, this.handleDisconnectMetamask);
   }
 
+
   private removeMetamaskProviderHooks(): void {
-    (this.provider as BrowserProvider).removeListener(
+    (this.provider as providers.Web3Provider).removeListener(
       ACCOUNTS_CHANGED,
       this.handleAccountsChangedMetamask
     );
-    (this.provider as BrowserProvider).removeListener(
+    (this.provider as providers.Web3Provider).removeListener(
       CHAIN_CHANGED,
       this.handleChainChangedMetamask
     );
-    (this.provider as BrowserProvider).removeListener(
+    (this.provider as providers.Web3Provider).removeListener(
       DISCONNECT,
       this.handleDisconnectMetamask
     );
@@ -113,8 +114,8 @@ export class WalletService {
         if (typeof window.ethereum === 'undefined' && isMobile()) {
           window.location.href = this.appConfig.metamaskDeepLink;
         } else if (typeof window.ethereum !== 'undefined') {
-          this.provider = new ethers.BrowserProvider(window.ethereum);
-          this.createProviderHooks();
+          this.provider = new providers.Web3Provider(window.ethereum, this.appConfig.chainIdNumber);
+          this.createProviderHooks(this.provider.provider);
           this.store.dispatch(WalletActions.connectWallet());
           await this.provider
             .send('eth_requestAccounts', [])

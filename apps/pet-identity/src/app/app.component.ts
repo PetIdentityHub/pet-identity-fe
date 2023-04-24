@@ -5,12 +5,14 @@ import { TuiRootModule } from '@taiga-ui/core';
 import { DataAccessModule, WalletFacade, WalletType } from '@pet-identity/feature-pet-identity';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
   standalone: true,
   imports: [
     CommonModule,
+    HttpClientModule,
     TuiRootModule,
     RouterModule,
     TopNavComponent,

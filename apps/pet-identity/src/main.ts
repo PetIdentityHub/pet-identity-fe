@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from './environments/environment';
 import { enableProdMode } from '@angular/core';
 import { APP_CONFIG } from "@pet-identity/shared";
+import { provideHttpClient } from "@angular/common/http";
 
 if (environment.production) {
   enableProdMode();
@@ -19,6 +20,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()), 
     {
       provide: APP_CONFIG,

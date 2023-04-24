@@ -10,12 +10,14 @@ export const environment = {
   baseUrl: '',
   //rpcUrl: "http://localhost:8545/",
   rpcChainId: '0x539',
-
-  rpcUrlBinance: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+  rpcUrlBinance: 'https://data-seed-prebsc-2-s3.binance.org:8545',
   chainIdNumber: 97, //Binance Smart Chain
   chainIdHex: '0x61', //Binance Smart Chain
   networkId: '', //Binance Smart Chain
   metamaskDeepLink:'',
+  chainApiUrl: 'https://api-testnet.bscscan.com/api',
+  petNftContractAddress: '0x2d8F5dD22a5bA26A8713eBF01e086E56984Bdbea'
+  
 };
 
 /*

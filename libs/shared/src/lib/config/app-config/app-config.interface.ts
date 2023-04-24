@@ -10,4 +10,6 @@ export interface AppConfig {
   chainIdHex: string;
   networkId: string;
   metamaskDeepLink: string;
+  chainApiUrl: string;
+  petNftContractAddress: string;
 }

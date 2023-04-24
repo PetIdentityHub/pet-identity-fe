@@ -13,12 +13,17 @@ import { TuiIslandModule } from '@taiga-ui/kit';
   styleUrls: ['./pet-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PetDetailsComponent {
+export class PetDetailsComponent implements OnInit {
 
   getPet$!: Observable<Pet | undefined>;
 
   constructor(private petsService: PetsService, private route: ActivatedRoute) {
-    this.getPet$ = this.petsService.getPetById(this.route.snapshot.params['id']);
+    //this.getPet$ = this.petsService.getPetMetadataByChipNumber(this.route.snapshot.params['id']);
+  }
+
+  ngOnInit(): void {
+    this.petsService.getPetMetadataByChipNumber('PetChipId').subscribe((res) => {console.log(res)});
+    this.petsService.getPetMetadataByName('PetName').subscribe((res) => {console.log(res)});
   }
 
 }
