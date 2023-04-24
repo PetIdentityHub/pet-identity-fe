@@ -10,19 +10,38 @@
 
   &::before {
     content: '';
-    background: url('/assets/images/hero-img.jpg') no-repeat;
-    background-size: cover;
+  }
+
+  &::after {
+    content: '';
+    background: url("/assets/images/dog_illustration.webp") no-repeat;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 40%;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
-    z-index: 1;
+    opacity: 0.8;
+    background-position: 30%;
   }
 
   @media screen and (min-width: 1240px) {
     height: 30rem;
+
+    &::before {
+      content: '';
+      background: url("/assets/images/dog_illustration2.webp") no-repeat;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+
+
+    &::after {
+      left: 50%;
+    }
   }
 }
 
@@ -30,7 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 2;
   position: relative;
   text-align: center;
@@ -39,12 +58,12 @@
   padding: 0 2rem;
 
   &-content {
-    width: 30%;
     max-width: 600px;
 
     &__title {
       font-size: 2.5rem;
       font-weight: 600;
+      line-height: 3rem;
       margin-bottom: 2rem;
     }
 
@@ -57,5 +76,9 @@
             width: 85%;
         }
     }
+  }
+
+  @media screen and (min-width: 1240px) {
+    align-items: center;
   }
 }

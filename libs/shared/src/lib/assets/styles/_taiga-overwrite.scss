@@ -1,8 +1,8 @@
 :root {
   --tui-heading-font: 'Inter', -apple-system, 'BlinkMacSystemFont', system-ui,
-    'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
   --tui-text-font: 'Inter', -apple-system, 'BlinkMacSystemFont', system-ui,
-    'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
   --tui-font-heading: var(--tui-heading-font);
   --tui-font-heading-1: bold 3.125rem/3.5rem var(--tui-font-heading);
   --tui-font-heading-2: bold 2.75rem/3rem var(--tui-font-heading);
@@ -28,17 +28,17 @@
   --tui-base-07: #8a8a8a;
   --tui-base-08: #00494a;
   --tui-base-09: #1c1c1c;
-  --tui-primary: #00bac7;
-  --tui-primary-hover: #33c7d1;
-  --tui-primary-active: #0098a6;
+  --tui-primary: #263657;
+  --tui-primary-hover: #384a7c;
+  --tui-primary-active: #1b2a4b;
   --tui-secondary: #fefefe;
   --tui-secondary-hover: #e5e5e5;
   --tui-secondary-active: #dbdbdb;
   --tui-accent: #6993fc;
   --tui-accent-hover: #8ca8ff;
   --tui-accent-active: #5077e6;
-  --tui-selection: rgba(0, 186, 199, 0.12);
-  --tui-focus: rgba(0, 186, 199, 0.64);
+  --tui-selection: rgba(38, 54,87, 0.12);
+  --tui-focus: rgba(38, 54, 87, 0.64);
   --tui-clear: rgba(0, 0, 0, 0.04);
   --tui-clear-hover: rgba(0, 0, 0, 0.16);
   --tui-clear-active: rgba(0, 0, 0, 0.2);
@@ -71,8 +71,8 @@
   --tui-text-01: #1b1f3b;
   --tui-text-02: rgba(27, 31, 59, 0.65);
   --tui-text-03: rgba(27, 31, 59, 0.4);
-  --tui-link: #00bac7;
-  --tui-link-hover: #33c7d1;
+  --tui-link: #263657;
+  --tui-link-hover: #384a7c;
   --tui-positive: #3aa981;
   --tui-positive-hover: #7ac5aa;
   --tui-negative: #dd4c1e;
@@ -80,10 +80,10 @@
   --tui-text-01-night: #ffffff;
   --tui-text-02-night: rgba(255, 255, 255, 0.72);
   --tui-text-03-night: rgba(255, 255, 255, 0.6);
-  --tui-link-night: #00bac7;
-  --tui-link-night-hover: #33c7d1;
+  --tui-link-night: #263657;
+  --tui-link-night-hover: #384a7c;
   --tui-positive-night: #44c596;
   --tui-positive-night-hover: #3aa981;
   --tui-negative-night: #ff8c67;
   --tui-negative-night-hover: #bb593a;
-}
+  }
