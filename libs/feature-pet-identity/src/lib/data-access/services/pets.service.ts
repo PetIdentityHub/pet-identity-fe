@@ -24,7 +24,6 @@ export class PetsService {
 
     private getPetNftContract(signerOrProvider: Signer | providers.Web3Provider | undefined): Observable<PetNftContract> {
         return this.contractsService.getAbi(this.appConfig.petNftContractAddress).pipe(
-            tap(abi => console.log('Received ABI:', abi)),
             map(abi => new PetNftContract(this.appConfig.petNftContractAddress, abi, signerOrProvider))
         );
     }
