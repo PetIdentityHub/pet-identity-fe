@@ -12,6 +12,58 @@
     }
 }
 
+.accent2 {
+    & > .ui-button > div {
+        background: var(--tui-support-05) !important;
+        color: var(--tui-base-01) !important;
+        transition: filter 0.3s ease-in-out;
+
+
+        &:hover {
+            filter: brightness(120%);
+        }
+    }
+}
+
+.accent3 {
+    & > .ui-button > div {
+        background: var(--tui-support-16) !important;
+        color: var(--tui-base-01) !important;
+        transition: filter 0.3s ease-in-out;
+
+
+        &:hover {
+            filter: brightness(120%);
+        }
+    }
+}
+
+.accent4 {
+    & > .ui-button > div {
+        background: var(--tui-support-02) !important;
+        color: var(--tui-base-01) !important;
+        transition: filter 0.3s ease-in-out;
+
+
+        &:hover {
+            filter: brightness(120%);
+        }
+    }
+}
+
+.accent5 {
+    & > .ui-button > div {
+        background: var(--tui-support-08) !important;
+        color: var(--tui-base-01) !important;
+        transition: filter 0.3s ease-in-out;
+
+
+        &:hover {
+            filter: brightness(120%);
+        }
+    }
+}
+
 .tall {
     height: var(--tui-height-l) !important;
 }

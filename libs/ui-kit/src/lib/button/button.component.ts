@@ -13,7 +13,7 @@ import {TuiButtonModule} from '@taiga-ui/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent implements OnInit{
-  @Input() type: 'primary' | 'secondary' | 'secondary-destructive' | 'accent' | 'flat' | 'outline' = 'primary';
+  @Input() type: 'primary' | 'secondary' | 'secondary-destructive' | 'accent' | 'accent2' | 'accent3' | 'accent4' | 'accent5' | 'flat' | 'outline' = 'primary';
   @Input() disabled: boolean = false;
   @Input() height: 'tall' | 'regular' = 'regular';
 
