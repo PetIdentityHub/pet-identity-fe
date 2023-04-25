@@ -24,10 +24,21 @@
     width: 100%;
     max-width: 1280px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
     z-index: 1;
+
+    @media screen and (min-width: 900px) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 p {
-    min-height: 6.5rem;
+    min-height: 4.5rem;
+
+    @media screen and (min-width: 900px) {
+        min-height: 6.5rem;
+    }
 }
