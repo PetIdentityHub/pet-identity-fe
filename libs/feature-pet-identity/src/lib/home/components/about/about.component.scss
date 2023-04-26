@@ -32,6 +32,7 @@
 
     &-content {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 2rem;
@@ -66,8 +67,9 @@
         max-width: 70rem;
         gap: 10rem;
 
-        &__content {
+        &-content {
             width: 50%;
+            flex-direction: row;
         }
     }
 }
