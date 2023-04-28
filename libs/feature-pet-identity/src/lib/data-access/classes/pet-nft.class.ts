@@ -37,4 +37,9 @@ export class PetNftContract extends BaseContract {
     public tokenURI(tokenId: BigNumberish): Promise<any> {
         return this._contract['tokenURI'](tokenId);
     }
+
+    public createPetProfile(name: string, chipNumber: string, metadataURI: string): Promise<any> {
+        console.log(name, chipNumber, metadataURI)
+        return this._contract['createPetProfile']([name, chipNumber, `ipfs://${metadataURI}/`]);
+    }
 }

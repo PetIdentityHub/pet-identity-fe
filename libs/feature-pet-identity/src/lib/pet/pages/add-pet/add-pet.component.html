@@ -1,0 +1,48 @@
+<img
+    src="/assets/images/dog_note.webp"
+    alt="Dog with notes"
+    role="presentation"
+/>
+<div class="add-pet" [formGroup]="formGroup">
+    <h1>Add Pet</h1>
+    <div class="row">
+        <ui-input
+            class="short-field"
+            label="Home Name"
+            tooltip="Name you are calling your pet at home"
+            formControlName="name"
+        ></ui-input>
+    </div>
+    <div class="row">
+        <ui-input
+            label="Kennel Name"
+            tooltip="If your pet is purebred, you can add the kennel name here"
+            formControlName="kennelName"
+        ></ui-input>
+        <ui-input
+            label="Pedigree Name"
+            tooltip="Most of the times its the name given by the breeder affixing or prefixing the kennel name"
+            formControlName="pedigreeName"
+        ></ui-input>
+    </div>
+    <div class="row">
+        <ui-input
+            label="Chip No."
+            tooltip="If your pet is microchipped, you can add the chip number here"
+            formControlName="chipNumber"
+        ></ui-input>
+        <ui-input label="Date of Birth" formControlName="dob"></ui-input>
+    </div>
+    <div class="row">
+        <ui-input label="Species" formControlName="species"></ui-input>
+        <ui-input label="Breed" formControlName="breed"></ui-input>
+    </div>
+    <div class="row">
+        <ui-input label="Color" formControlName="color"></ui-input>
+        <ui-input label="Fur Type" formControlName="furType"></ui-input>
+    </div>
+    <div class="row add-pet__submit">
+        <ui-button type="outline" height="tall" (click)="clear()">Clear Form</ui-button>
+        <ui-button type="primary" height="tall" (click)="submit()">Add Pet</ui-button>
+    </div>
+</div>

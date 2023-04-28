@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PetDetailsComponent } from './pages/pet-details/pet-details.component';
+import { AddPetComponent } from './pages/add-pet/add-pet.component';
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: 'search/:id',
     component: PetDetailsComponent
+  },
+  {
+    path: 'add',
+    component: AddPetComponent
   }
 ];
 
@@ -13,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SearchResultsRoutingModule { }
+export class PetRoutingModule { }

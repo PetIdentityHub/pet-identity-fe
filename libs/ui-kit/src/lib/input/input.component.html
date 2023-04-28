@@ -1,7 +1,21 @@
-<tui-input
+<label [tuiLabel]="labelContent">
+    <tui-input
     [tuiTextfieldLabelOutside]="true"
     [tuiTextfieldIconLeft]="icon"
+    [formControl]="control"
+    [tuiTextfieldSize]="size"
     >
   <ng-content></ng-content>
   <input [type]="type" tuiTextfield [formControl]="control" />
-</tui-input>
+  </tui-input>
+</label>
+<ng-template #labelContent>
+  {{ label }}
+  <tui-tooltip
+      *ngIf="tooltip"
+      describeId="uniqueId"
+      [content]="tooltip"
+      direction="top-right"
+  ></tui-tooltip>
+</ng-template>
+

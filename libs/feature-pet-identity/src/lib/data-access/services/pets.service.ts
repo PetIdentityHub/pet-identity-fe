@@ -124,6 +124,27 @@ export class PetsService {
     getMockPetMetadata(id: string): Observable<Pet | undefined> {
         return of(petsMock.find((pet) => pet.chipNumber === id));
     }
+
+    postPet(metadata: Pet): Observable<any> {
+        const signer = this.getSigner();
+        if (signer) {
+            return this.getPetNftContract(signer).pipe(
+                switchMap((petNftContract) =>
+                    this.contractsService.postMetadata(metadata).pipe(
+                        switchMap((ipfsResponse) =>
+                            petNftContract.createPetProfile(
+                                metadata.name,
+                                metadata.chipNumber,
+                                ipfsResponse.IpfsHash
+                            )
+                        )
+                    )
+                )
+            );
+        } else {
+            return of({});
+        }
+    }
         
 
 }

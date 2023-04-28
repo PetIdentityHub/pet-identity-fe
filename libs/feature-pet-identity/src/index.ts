@@ -10,4 +10,4 @@ export * from './lib/data-access/facades/wallet.facade';
 export * from './lib/data-access/services/pets.service';
 export * from './lib/data-access/models/pet.model';
 export * from './lib/data-access/models/user.model';
-export * from './lib/search-results/search-results.module';
+export * from './lib/pet/pet.module';

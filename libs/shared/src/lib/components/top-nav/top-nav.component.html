@@ -4,10 +4,11 @@
     </div>
     <div class="navbar-nav">
       <div>
-        <a class="nav-item" routerLink="/home" routerLinkActive="active">Home</a>
+        <a class="nav-item" routerLink="/" routerLinkActive="active">Home</a>
         <a class="nav-item" routerLink="/about" routerLinkActive="active">About</a>
         <a class="nav-item" routerLink="/contact" routerLinkActive="active">Contact</a>
       </div>
+        <ui-button *ngIf="connected" class="nav-item" type="accent2" routerLink="/pets/add">Add Pet</ui-button>
         <ui-button *ngIf="!connected" class="nav-item" (click)="login()" type="primary">Login</ui-button>
         <ui-button *ngIf="connected" class="nav-item" (click)="logout()" type="primary">Logout</ui-button>
     </div>    
