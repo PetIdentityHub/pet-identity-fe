@@ -7,7 +7,7 @@ pool:
 variables:
 - group: Frontend
 - name: profile
-  value: $[replace(variables['Build.SourceBranchName'], 'master', 'production')]
+  value: ${{ replace(variables['Build.SourceBranchName'], 'main', 'production') }}
 
 steps:
 - task: NodeTool@0
