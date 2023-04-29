@@ -1,37 +1,51 @@
-trigger:
-- master
+name: Azure Static Web Apps CI/CD
 
-pool:
-  vmImage: ubuntu-latest
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - master
 
-variables:
-- group: Frontend
-- name: profile
-  value: ${{ replace(variables['Build.SourceBranchName'], 'main', 'production') }}
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    set -e
-    npm install -g nx
-    npm install
-    npm run build:$(profile)
-    echo $(profile)
-    tree -L 4 dist/
-  displayName: 'npm install and build'
-  workingDirectory: app
-
-- task: AzureStaticWebApp@0
-  inputs:
-      app_location: "dist/apps/pet-identity"
-      api_location: "api"
-      output_location: "dist/apps/pet-identity"
-      azure_static_web_apps_api_token: $(deployment_token)
-      skip_app_build: true
-      skip_api_build: true
-      is_static_export: true
-      production_branch: 'master'
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+      - run: npm ci
+      - run: npm install -g nx
+      - run: npm run build:$(profile)
+        env:
+          profile: ${{ replace(github.ref, 'refs/heads/master', 'production') }}
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_PEBBLE_09B9D9E10 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          app_location: "/" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "dist/apps/pet-identity" # Built app content directory
+          
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_PEBBLE_09B9D9E10 }}
+          action: "close"
