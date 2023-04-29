@@ -1,0 +1,37 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- group: Frontend
+- name: profile
+  value: $[replace(variables['Build.SourceBranchName'], 'master', 'production')]
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    set -e
+    npm install -g nx
+    npm install
+    npm run build:$(profile)
+    echo $(profile)
+    tree -L 4 dist/
+  displayName: 'npm install and build'
+  workingDirectory: app
+
+- task: AzureStaticWebApp@0
+  inputs:
+      app_location: "dist/apps/pet-identity"
+      api_location: "api"
+      output_location: "dist/apps/pet-identity"
+      azure_static_web_apps_api_token: $(deployment_token)
+      skip_app_build: true
+      skip_api_build: true
+      is_static_export: true
+      production_branch: 'master'
