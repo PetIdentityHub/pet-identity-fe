@@ -6,7 +6,8 @@
     "ng": "nx",
     "start": "nx serve pet-identity",
     "test": "nx test",
-    "build:production": "nx build pet-identity --configuration=production"
+    "build:production": "nx build pet-identity --configuration=production",
+    "build:azure": "nx build pet-identity --configuration=production --outputPath=dist/apps/pet-identity"
   },
   "private": true,
   "dependencies": {
