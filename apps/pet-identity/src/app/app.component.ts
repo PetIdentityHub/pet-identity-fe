@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent, TopNavComponent } from '@pet-identity/shared';
+import { FooterComponent, LoadingFacade, LoadingSpinnerComponent, SharedStoreModule, TopNavComponent } from '@pet-identity/shared';
 import { TuiRootModule } from '@taiga-ui/core';
 import { DataAccessModule, WalletFacade, WalletType } from '@pet-identity/feature-pet-identity';
 import { Observable, of } from 'rxjs';
@@ -17,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     TopNavComponent,
     FooterComponent,
-    DataAccessModule
+    DataAccessModule,
+    SharedStoreModule,
+    LoadingSpinnerComponent
   ],
   selector: 'pet-identity-root',
   templateUrl: './app.component.html',
@@ -25,10 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   walletConnected$: Observable<boolean> = of(false)
+  loading$: Observable<boolean> = of(false)
 
-  constructor(private readonly walletFacade: WalletFacade) {
+  constructor(private readonly walletFacade: WalletFacade, private loadingFacade: LoadingFacade) {
     this.walletConnected$ = this.walletFacade.connected$;
-  }
+    this.loading$ = this.loadingFacade.loading$;  }
 
   connect() {
     this.walletFacade.connectWalletAccount(WalletType.METAMASK);
