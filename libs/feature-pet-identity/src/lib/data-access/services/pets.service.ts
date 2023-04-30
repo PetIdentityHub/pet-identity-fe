@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, from, map, of, switchMap, tap } from 'rxjs';
 import { BigNumber, BigNumberish, Signer, providers } from 'ethers';
 import { PetNftContract } from '../classes/pet-nft.class';
-import { APP_CONFIG, AppConfig } from '@pet-identity/shared';
+import { APP_CONFIG, AppConfig, LoadingFacade } from '@pet-identity/shared';
 import { HttpClient } from '@angular/common/http';
 import { ContractsService } from './contracts.service';
 import { Pet } from '../models/pet.model';
@@ -19,6 +19,7 @@ export class PetsService {
     constructor(
         private httpClient: HttpClient,
         private contractsService: ContractsService,
+        private loadingFacade: LoadingFacade,
         @Inject(APP_CONFIG) private readonly appConfig: AppConfig
     ) {}
 
@@ -76,6 +77,7 @@ export class PetsService {
     }
 
     getPetMetadataByChipNumber(chipNumber: string): Observable<Pet> {
+        this.loadingFacade.setLoading(true);
         const signer = this.getSigner();
         if (signer) {
             return this.getPetNftContract(signer).pipe(
@@ -88,17 +90,20 @@ export class PetsService {
                             let cid = ipfsurl
                                 .split('ipfs://')[1]
                                 .replace('/', '');
+                            this.loadingFacade.setLoading(false);
                             return this.getPetMetadata(cid);
                         })
                     )
                 )
             );
         } else {
+            this.loadingFacade.setLoading(false);
             return of({} as Pet);
         }
     }
 
     getPetMetadataByName(name: string): Observable<Pet> {
+        this.loadingFacade.setLoading(true);
         const signer = this.getSigner();
         if (signer) {
             return this.getPetNftContract(signer).pipe(
@@ -111,12 +116,14 @@ export class PetsService {
                             let cid = ipfsurl
                                 .split('ipfs://')[1]
                                 .replace('/', '');
+                            this.loadingFacade.setLoading(false);
                             return this.getPetMetadata(cid);
                         })
                     )
                 )
             );
         } else {
+            this.loadingFacade.setLoading(false);
             return of({} as Pet);
         }
     }

@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PetsService } from '../../../data-access/services/pets.service';
 import { Pet } from '../../../data-access/models/pet.model';
 import { ContractsService } from '../../../data-access/services/contracts.service';
+import { LoadingFacade } from '@pet-identity/shared';
+
 
 @Component({
     selector: 'pet-identity-add-pet',
@@ -30,7 +32,8 @@ export class AddPetComponent {
     constructor(
         private readonly formBuilder: FormBuilder,
         private petsService: PetsService,
-        private contractsService: ContractsService
+        private contractsService: ContractsService,
+        private LoadingFacade: LoadingFacade
     ) {
         this.initForm();
     }
@@ -58,18 +61,19 @@ export class AddPetComponent {
     }
 
     submit() {
+        this.LoadingFacade.setLoading(true);
         if (this.formGroup.get('files')?.value) {
             const file = this.formGroup.get('files')?.value;
             this.formGroup.get('photo')?.setValue(file.name);
             this.contractsService.postImage(file).subscribe(
                 (response) => {
-                    console.log(response);
                     this.formGroup.get('photo')?.setValue(response.IpfsHash);
                     this.formGroup.removeControl('files');
                     this.savePet();
                 },
                 (error) => {
                     console.log(error);
+                    this.LoadingFacade.setLoading(false);
                 }
             );
         } else this.savePet();
@@ -78,11 +82,12 @@ export class AddPetComponent {
     savePet(): void {
         this.petsService.postPet(this.formGroup.value as Pet).subscribe(
             (response) => {
-                console.log(response);
                 this.formGroup.reset();
+                this.LoadingFacade.setLoading(false);
             },
             (error) => {
                 console.log(error);
+                this.LoadingFacade.setLoading(false);
             }
         );
     }
