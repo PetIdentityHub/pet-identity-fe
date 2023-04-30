@@ -1,0 +1,50 @@
+.upload {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed var(--tui-support-13);
+    border-radius: var(--tui-radius-m);
+    transition: border 0.3s ease-in-out;
+    padding: 0.5rem;
+
+    p {
+        overflow-wrap: anywhere;
+    }
+
+    label {
+        background: var(--tui-support-13);
+        padding: 8px;
+        color: var(--tui-secondary);
+        cursor: pointer;
+        border-radius: var(--tui-radius-m);
+        transition: background 0.3s ease-in-out;
+    
+        &:hover {
+            background: var(--tui-support-14);
+        }
+    }
+
+    .filename {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+    
+        .remove {
+            cursor: pointer;
+            transition: color 0.3s ease-in-out;
+    
+            &:hover {
+                color: var(--tui-negative);
+            }
+        }
+    }
+}
+
+label {
+    min-height: 0;
+}

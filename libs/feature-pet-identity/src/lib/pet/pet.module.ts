@@ -9,6 +9,6 @@ import { PetRoutingModule } from './pet-routing.module';
   imports: [
     CommonModule,
     PetRoutingModule
-  ]
+    ],
 })
 export class PetModule { }

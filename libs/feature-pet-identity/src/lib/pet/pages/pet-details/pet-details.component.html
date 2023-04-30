@@ -44,7 +44,7 @@
             </div>
             <div class="pet-details__info">
                 <div class="pet-details__image">
-                    <img *ngIf="pet.photo" class="photo" [src]="pet.photo" role="presentation" alt="pet photo" />
+                    <img *ngIf="pet.photo" class="photo" [src]="this.photoBaseUrl + pet.photo" role="presentation" alt="pet photo" />
                     <img *ngIf="!pet.photo" src="/assets/images/happy_dog_icon.webp" role="presentation" alt="placeholder image" />
                 </div>
                 <tui-island>

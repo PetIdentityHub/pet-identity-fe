@@ -41,6 +41,10 @@
         <ui-input label="Color" formControlName="color"></ui-input>
         <ui-input label="Fur Type" formControlName="furType"></ui-input>
     </div>
+    <div class="row">
+        <ui-upload class="short-field" label="Upload photo" formControlName="files"></ui-upload>
+        
+    </div>
     <div class="row add-pet__submit">
         <ui-button type="outline" height="tall" (click)="clear()">Clear Form</ui-button>
         <ui-button type="primary" height="tall" (click)="submit()">Add Pet</ui-button>

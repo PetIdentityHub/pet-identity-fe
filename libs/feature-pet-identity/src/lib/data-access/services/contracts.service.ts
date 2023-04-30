@@ -32,6 +32,17 @@ export class ContractsService {
       };
       return this.http.post<ipfsResponse>('https://api.pinata.cloud/pinning/pinJSONToIPFS', metadata, httpOptions)
     }
+
+    postImage(image: File): Observable<ipfsResponse> {
+      const formData = new FormData();
+      formData.append('file', image);
+      const httpOptions = {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.appConfig.pinataJWT}`
+        })
+      };
+      return this.http.post<ipfsResponse>('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, httpOptions)
+    }
     
 }
 

@@ -4,3 +4,4 @@ export * from "./lib/functions/mobile";
 export * from "./lib/config/app-config/app-config.module";
 export * from "./lib/config/app-config/app-config.token";
 export * from "./lib/config/app-config/app-config.interface";
+export * from "./lib/pipes/shorten-text/shorten-text.pipe";

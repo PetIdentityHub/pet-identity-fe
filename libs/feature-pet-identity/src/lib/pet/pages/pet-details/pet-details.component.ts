@@ -14,11 +14,12 @@ import { TuiIslandModule } from '@taiga-ui/kit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PetDetailsComponent implements OnInit {
-
+  photoBaseUrl!: string;
   getPet$!: Observable<Pet | undefined>;
 
   constructor(private petsService: PetsService, private route: ActivatedRoute) {
     this.getPet$ = this.petsService.getPetMetadataByChipNumber(this.route.snapshot.params['id']);
+    this.photoBaseUrl = 'https://gateway.pinata.cloud/ipfs/'
   }
 
   ngOnInit(): void {

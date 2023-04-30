@@ -1,0 +1,22 @@
+<label *ngIf="label" [tuiLabel]="labelContent"></label>
+<div class="upload">
+    <label *ngIf="!filename">
+        <tui-svg src="tuiIconPlus"></tui-svg>
+        <input
+            type="file"
+            #fileInput
+            (change)="onFileChange($event)"
+            accept="image/*"
+            style="display: none"
+        />
+    </label>
+    
+    <div *ngIf="filename" class="filename">
+        <p>{{ filename }}</p>
+        <tui-svg class="remove" (click)="clear()" src="tuiIconX"></tui-svg>
+    </div>
+</div>
+
+<ng-template #labelContent>
+    {{ label }}
+</ng-template>
