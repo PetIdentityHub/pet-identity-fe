@@ -9,5 +9,9 @@ export const appRoutes: Route[] = [
         path: "pets",
         loadChildren: () => import("@pet-identity/feature-pet-identity").then(m => m.PetModule)
     },
+    {
+        path: "about",
+        loadChildren: () => import("@pet-identity/feature-pet-identity").then(m => m.AboutModule)
+    },
 
 ];

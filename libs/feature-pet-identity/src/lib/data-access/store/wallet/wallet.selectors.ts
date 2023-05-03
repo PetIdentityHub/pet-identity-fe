@@ -6,7 +6,6 @@ export const selectWallet = createFeatureSelector<fromWallets.WalletState>(
   fromWallets.walletKey
 );
 
-
 export const getShowWallets = createSelector(
   selectWallet,
   (state) => state.showWallets
@@ -16,7 +15,6 @@ export const getCloseWallets = createSelector(
   selectWallet,
   (state) => state.closeWallets
 );
-
 
 export const getAccount = createSelector(
   selectWallet,

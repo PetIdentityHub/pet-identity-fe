@@ -1,0 +1,13 @@
+<tui-accordion class="container">
+    <tui-accordion-item *ngFor="let item of items">
+        {{item.title}}
+        <ng-template tuiAccordionItemContent>
+            <ng-container *ngIf="!$any(item.content).title else linkTemplate">
+                {{item.content}}
+            </ng-container>
+        </ng-template>
+        <ng-template #linkTemplate>
+            <a [href]="item.content?.link" target="_blank">{{item.content?.link}}</a>
+        </ng-template>
+    </tui-accordion-item>
+</tui-accordion>

@@ -11,3 +11,4 @@ export * from './lib/data-access/services/pets.service';
 export * from './lib/data-access/models/pet.model';
 export * from './lib/data-access/models/user.model';
 export * from './lib/pet/pet.module';
+export * from './lib/about/about.module';
