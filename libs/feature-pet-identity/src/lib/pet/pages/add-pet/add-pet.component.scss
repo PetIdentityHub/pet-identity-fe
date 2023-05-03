@@ -18,16 +18,17 @@
     justify-content: center;
     gap: 1rem;
 
+
     .row {
         display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        gap: 2rem;
+        gap: 1rem;
 
         .short-field {
-            width: calc(50% - 1rem)
+            width: 100%;
         }
 
         &.add-pet__submit {
@@ -35,9 +36,30 @@
             margin-top: 1rem;
         }
     }
-
 }
 
 img {
     opacity: 0.95;
+    display: none;   
+}
+
+@media screen and (min-width: 768px) {
+    img {
+        display: block;
+    }
+
+    .add-pet {
+        gap: 1rem;
+    }
+
+    .row {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 2rem;
+
+        .short-field {
+            width: calc(50% - 1rem)
+        }
+    }
 }
