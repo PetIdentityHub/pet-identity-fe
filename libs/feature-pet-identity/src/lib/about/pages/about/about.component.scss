@@ -16,4 +16,14 @@
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;
+
+    p.row {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        img {
+            max-width: 150px;
+        }
+    }
 }
