@@ -9,6 +9,11 @@
     min-height: calc(100% - 370px - 4rem);
 }
 
+.container {
+    display: flex;
+    gap: 3rem;
+}
+
 .core-concepts {
     width: 100%;
     max-width: 700px;
@@ -18,3 +23,38 @@
     justify-content: center;
     gap: 2rem;
 }
+
+.sidebar {
+    min-width: 200px;
+    padding: 20px;
+    background-color: #e8f9fb;
+    min-height: 30rem;
+    border-radius: var(--tui-radius-s);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+        color: #007bff;
+    }
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+}
+

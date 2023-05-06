@@ -9,4 +9,10 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./core-concepts.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoreConceptsComponent {}
+export class CoreConceptsComponent {
+    activeSection = 'introduction';
+    
+    setActiveSection(section: string) {
+        this.activeSection = section;
+      }
+}
