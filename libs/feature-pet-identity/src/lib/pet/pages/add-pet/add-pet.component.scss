@@ -50,16 +50,16 @@ img {
 
     .add-pet {
         gap: 1rem;
-    }
 
-    .row {
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 2rem;
-
-        .short-field {
-            width: calc(50% - 1rem)
+        .row {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2rem;
+    
+            .short-field {
+                width: calc(50% - 1rem)
+            }
         }
     }
 }
