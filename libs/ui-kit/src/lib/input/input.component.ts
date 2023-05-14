@@ -17,11 +17,11 @@ import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 export class InputComponent extends ControlValueAccessorConnectorComponent{
   @Input() icon!: string; //tuiIconSearchLarge for search icon
   @Input() placeholder!: string;
-  @Input() TextfieldLabelOutside: boolean = true;
-  @Input() type: string = 'text';
+  @Input() TextfieldLabelOutside = true;
+  @Input() type = 'text';
   @Input() size: 's' | 'm' | 'l' = 'm';
-  @Input() tooltip: string = '';
-  @Input() label: string = '';
+  @Input() tooltip = '';
+  @Input() label = '';
 
   constructor(injector: Injector) {
     super(injector)

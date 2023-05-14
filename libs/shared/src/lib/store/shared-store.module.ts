@@ -11,6 +11,6 @@ import * as loadingStore from './loading/loading.reducer';
       loadingStore.loadingKey,
       loadingStore.reducer
     ),
-  ]
+  ],
 })
 export class SharedStoreModule { }

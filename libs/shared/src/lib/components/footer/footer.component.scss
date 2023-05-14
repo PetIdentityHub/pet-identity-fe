@@ -94,4 +94,15 @@ footer {
 
     }
   }
-  
+
+  .nav-item {
+    padding: 0 1rem;
+    cursor: pointer;
+    color: var(--tui-text-01);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--tui-primary);
+    }
+  }

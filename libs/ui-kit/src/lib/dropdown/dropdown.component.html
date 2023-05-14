@@ -1,0 +1,19 @@
+<label class="w-100" [tuiLabel]="labelContent">
+    <div class="w-100 wrapper">
+        <select class="w-100 h-285em" [formControl]="control">
+            <option *ngFor="let option of options" [value]="option.value">
+                {{ option.label }}
+            </option>
+        </select>
+    </div>
+</label>
+<ng-template #labelContent>
+  {{ label }}
+  <tui-tooltip
+      *ngIf="tooltip"
+      describeId="uniqueId"
+      [content]="tooltip"
+      direction="top-right"
+  ></tui-tooltip>
+</ng-template>
+

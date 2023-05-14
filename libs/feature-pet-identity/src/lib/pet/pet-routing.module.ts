@@ -6,16 +6,16 @@ import { AddPetComponent } from './pages/add-pet/add-pet.component';
 const routes: Routes = [
   {
     path: 'search/:id',
-    component: PetDetailsComponent
+    component: PetDetailsComponent,
   },
   {
     path: 'add',
-    component: AddPetComponent
+    component: AddPetComponent,
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PetRoutingModule { }
