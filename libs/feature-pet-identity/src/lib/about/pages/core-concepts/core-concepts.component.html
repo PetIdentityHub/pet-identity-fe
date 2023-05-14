@@ -2,13 +2,14 @@
     <div class="sidebar">
         <h3>Menu</h3>
         <ul>
-          <li role="button" tabindex="0" (click)="setActiveSection('introduction')">PetProfile (PetIdentity)</li>
-          <li role="button" tabindex="1" (click)="setActiveSection('issuer')">Issuer</li>
-          <li role="button" tabindex="2" (click)="setActiveSection('operator')">Operator</li>
-          <li role="button" tabindex="3" (click)="setActiveSection('piece')">Piece</li>
+          <li role="button" tabindex="0" (click)="setActiveSection('introduction')"><b>PetProfile (PetIdentity)</b></li>
+          <li role="button" tabindex="1" (click)="setActiveSection('issuer')"><b>Issuer</b></li>
+          <li role="button" tabindex="2" (click)="setActiveSection('operator')"><b>Operator</b></li>
+          <li role="button" tabindex="3" (click)="setActiveSection('piece')"><b>Piece</b></li>
+          <li role="button" tabindex="4" (click)="setActiveSection('become-issuer')"><b>How to become Piece Issuer?</b></li>
+          <li role="button" tabindex="4" (click)="setActiveSection('become-operator')"><b>How to become Operator?</b></li>
         </ul>
       </div>
-      
     <div class="content">
         <div class="core-concepts">
             <h1>Core Concepts</h1>
@@ -22,7 +23,7 @@
                 records, and personal connections. These all contribute to our
                 identity and how others perceive us. Pets are no different in
                 this regard.
-            </p>
+            </p><br />
             <p>
                 Creating a PetProfile is the first step towards consolidating
                 all of a pet's experiences in one unique, ID document-like
@@ -30,13 +31,13 @@
                 collect digital "Pieces" or footprints, such as veterinary
                 visits, breeder certificates, and other pet-related activities.
                 These Pieces are then linked to your pet's profile.
-            </p>
+            </p><br />
             <p>
                 You have the freedom to use these Pieces as you wish - share
                 them with others or keep them private for you and your pet.
                 PetProfile offers a centralized and convenient way to store,
                 manage, and access your pet's information and history.
-            </p>
+            </p><br />
             </div>
 
             <div *ngIf="activeSection === 'issuer'">
@@ -49,14 +50,14 @@
                 such entities. Veterinarians maintain health records, contest
                 organizers provide proof of participation, and animal breeders
                 authenticate pedigrees.
-            </p>
+            </p><br />
             <p>
                 Becoming an issuer not only streamlines the process of issuing
                 and verifying proofs but also contributes to a more sustainable
                 and eco-friendly approach. Being an issuer can help build the
                 reputation of the institution, demonstrating their commitment to
                 transparency, security, and innovation.
-            </p>
+            </p><br />
             </div>
 
             <div *ngIf="activeSection === 'operator'">
@@ -69,6 +70,14 @@
                 serve as a gatekeeper, maintaining the integrity and
                 trustworthiness of our platform.
             </p>
+            <br />
+            <p>
+                Operators will help us build a network of trusted issuers,
+                ensuring that only legitimate and credible entities can issue
+                Pieces. This will help us maintain the integrity of our
+                platform, ensuring that only legitimate and credible entities
+                can issue Pieces.
+            </p>
             </div>
 
             <div *ngIf="activeSection === 'piece'">
@@ -80,12 +89,45 @@
                 Soulbound Tokens (SBTs), Pieces can be registered and minted by
                 issuers, and then collected and associated with a unique
                 PetProfile.
-            </p>
+            </p><br />
             <p>
                 By collecting and connecting these Pieces to a PetProfile, pet
                 owners can create a comprehensive, digital portfolio of their
                 pet's life experiences and accomplishments, which can be shared
                 or kept private as desired.
+            </p><br />
+            </div>
+
+            <div *ngIf="activeSection === 'become-issuer'">
+            <h2>How to become Piece Issuer?</h2>
+            <p>
+                To become an issuer, you must first apply using our form.
+                Then <b>operators</b> are responsible for verifying the identity of
+                individuals or institutions applying to become issuers. Once
+                approved, you can begin issuing Pieces.
+            </p>
+            <br />
+            <p>
+                Depending on the type of issuer, you may be required to provide
+                additional information. Necessary information depends on the type of issuer and the country.
+                For example, if you are a veterinarian, you may be required to
+                provide your license number and proof of identity.
+            </p>
+            <br />
+            <p>
+                Issuers are responsible for creating and minting Pieces. They
+                can also revoke Pieces if necessary. Issuers can be individuals
+                or institutions, such as veterinarians, breeders, or contest
+                organizers.
+            </p>
+            </div>
+            <div *ngIf="activeSection === 'become-operator'">
+            <h2>How to become Operator?</h2>
+            <p>
+                To become an operator, you must concat with us.
+                Then <b>administrators</b> are responsible for verifying the identity of
+                individuals or institutions applying to become operators. Once
+                approved, you can begin verifying issuers.
             </p>
             </div>
         </div>
