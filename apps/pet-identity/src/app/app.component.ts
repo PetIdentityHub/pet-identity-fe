@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FooterComponent, LoadingFacade, LoadingSpinnerComponent, SharedStoreModule, TopNavComponent } from '@pet-identity/shared';
+import { FooterComponent, LoadingFacade, LoadingSpinnerComponent, LoginGuard, SharedStoreModule, TopNavComponent } from '@pet-identity/shared';
 import { TuiRootModule } from '@taiga-ui/core';
 import { DataAccessModule, WalletFacade, WalletType } from '@pet-identity/feature-pet-identity';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @Component({
   standalone: true,

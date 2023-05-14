@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable, from, map, of, switchMap, tap } from 'rxjs';
+import { Observable, from, map, of, switchMap } from 'rxjs';
 import { BigNumber, BigNumberish, Signer, providers } from 'ethers';
 import { PetNftContract } from '../classes/pet-nft.class';
 import { APP_CONFIG, AppConfig, LoadingFacade } from '@pet-identity/shared';
@@ -40,6 +40,7 @@ export class PetsService {
             );
     }
 
+    //TODO: move to shared service
     private getSigner(): Signer | null {
         if (window.ethereum != null) {
             this.provider = new providers.Web3Provider(window.ethereum);
@@ -87,7 +88,7 @@ export class PetsService {
                             this.getPetMetadataUrl(profileId, petNftContract)
                         ),
                         switchMap((ipfsurl) => {
-                            let cid = ipfsurl
+                            const cid = ipfsurl
                                 .split('ipfs://')[1]
                                 .replace('/', '');
                             this.loadingFacade.setLoading(false);
@@ -113,7 +114,7 @@ export class PetsService {
                             this.getPetMetadataUrl(profileId, petNftContract)
                         ),
                         switchMap((ipfsurl) => {
-                            let cid = ipfsurl
+                            const cid = ipfsurl
                                 .split('ipfs://')[1]
                                 .replace('/', '');
                             this.loadingFacade.setLoading(false);
@@ -152,6 +153,4 @@ export class PetsService {
             return of({});
         }
     }
-        
-
 }

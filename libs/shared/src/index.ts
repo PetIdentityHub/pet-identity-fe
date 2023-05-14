@@ -15,3 +15,5 @@ export * from "./lib/store/loading/loading.reducer";
 export * from "./lib/store/loading/loading.selectors";
 export * from "./lib/store/loading/loading.facade";
 export * from "./lib/store/shared-store.module";
+
+export * from "./lib/guards/login.guard";

@@ -21,7 +21,6 @@ export class PetDetailsComponent{
         private petsService: PetsService,
         private route: ActivatedRoute
     ) {
-      console.log(Number.isNaN(+this.route.snapshot.params['id']))
         this.getPet$ = Number.isNaN(+this.route.snapshot.params['id'])
             ? this.petsService.getPetMetadataByName(
                   this.route.snapshot.params['id']

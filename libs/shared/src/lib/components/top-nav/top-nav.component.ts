@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@pet-identity/ui-kit';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { WalletFacade } from '@pet-identity/feature-pet-identity';
 import { Observable, of } from 'rxjs';
 
@@ -17,11 +17,17 @@ export class TopNavComponent {
   @Input() connected: boolean | null = false;
   @Output() onLogin = new EventEmitter<boolean>();
 
+  constructor(
+    private readonly walletFacade: WalletFacade,
+    private readonly router: Router
+    ) {}
+
   login() {
     this.onLogin.emit(true);
   }
 
   logout() {
-    //this.walletFacade.disconnect();
+    this.walletFacade.disconnectWalletAccount();
+    this.router.navigate(['/']);
   }
 }
