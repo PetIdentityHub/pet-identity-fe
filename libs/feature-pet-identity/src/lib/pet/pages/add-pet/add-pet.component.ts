@@ -38,6 +38,11 @@ export class AddPetComponent {
         this.initForm();
     }
 
+    //TODO: we have to add more dynamic service for this form
+    //fields have to depends on type of species. Every species has different characteristics
+    //example: if species is dog, we have to show breed field
+    //if species is cat, we have to show furType field
+    //if species is bird, we have to show color field etc.
     initForm() {
         this.formGroup = this.formBuilder.group({
             name: '',

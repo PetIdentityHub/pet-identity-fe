@@ -36,16 +36,15 @@
         <ui-input label="Date of Birth" formControlName="dob"></ui-input>
     </div>
     <div class="row">
-        <ui-input label="Species" formControlName="species"></ui-input>
+        <ui-input label="Species (dog, cat)" formControlName="species"></ui-input>
         <ui-input label="Breed" formControlName="breed"></ui-input>
     </div>
     <div class="row">
         <ui-input label="Color" formControlName="color"></ui-input>
-        <ui-input label="Fur Type" formControlName="furType"></ui-input>
+        <ui-input label="Fur Type (short, medium, long)" formControlName="furType"></ui-input>
     </div>
     <div class="row">
         <ui-upload class="short-field" label="Upload photo" formControlName="files"></ui-upload>
-        
     </div>
     <div class="row add-pet__submit">
         <ui-button type="outline" height="tall" (click)="clear()">Clear Form</ui-button>
