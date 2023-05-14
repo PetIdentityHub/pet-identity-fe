@@ -6,7 +6,7 @@ import { ButtonComponent, DropdownComponent, InputComponent, UploadComponent } f
 import { IssuerApplication } from "../../../data-access/models/issuer-application";
 import { IssuerService } from "../../../data-access/services/issuer.service";
 import { WalletFacade } from "@pet-identity/feature-pet-identity";
-import { Observable, Subject, of, take, takeUntil, tap } from "rxjs";
+import { Observable, Subject, of, takeUntil, tap } from "rxjs";
 
 @Component({
     selector: 'pi-add-issuer',
