@@ -1,4 +1,5 @@
 import { Route } from "@angular/router";
+import { LoginGuard } from "@pet-identity/shared";
 
 export const appRoutes: Route[] = [
     {
@@ -13,5 +14,9 @@ export const appRoutes: Route[] = [
         path: "about",
         loadChildren: () => import("@pet-identity/feature-pet-identity").then(m => m.AboutModule)
     },
-
+    {
+        path: "issuer",
+        canActivate: [LoginGuard],
+        loadChildren: () => import("@pet-identity/feature-pet-identity").then(m => m.IssuerModule)
+    }
 ];

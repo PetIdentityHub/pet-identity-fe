@@ -1,0 +1,153 @@
+<div class="add-pet" [formGroup]="formGroup">
+    <ng-container *ngIf="!loading">
+        <h1>Issuer application</h1>
+        <ng-container *ngIf="(application$ | async)?.name">
+            <h3>
+                You have already applied to become an issuer. Please wait for your decision before applying again.
+            </h3>
+        </ng-container>
+        <ng-container *ngIf="!(application$ | async)?.name">
+            <p>
+                Please fill out the form below to apply to become an issuer. Once you have submitted your application, you will
+                receive an email with further instructions.
+            </p>
+            <div class="row">
+                <ui-dropdown
+                class="short-field"
+                label="Country"
+                tooltip="Select the country you are in"
+                [options]="countries"
+                icon="tuiIconSearchLarge"
+                formControlName="country"
+                ></ui-dropdown>
+                <ui-dropdown
+                class="short-field"
+                label="Type"
+                tooltip="Select which type of issuer you are"
+                [options]="issuerTypes"
+                icon="tuiIconSearchLarge"
+                formControlName="type"
+                ></ui-dropdown>
+            </div>
+            <ng-container formGroupName="requirements" *ngIf="type === 'vet'">
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="Name of the clinic"
+                    formControlName="name"
+                    ></ui-input>
+                    <ui-input
+                    class="short-field"
+                    label="License number"
+                    formControlName="licenseNumber"
+                    ></ui-input>
+                </div>
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="First name"
+                    formControlName="firstName"
+                    ></ui-input>
+                    <ui-input
+                    class="short-field"
+                    label="Last name"
+                    formControlName="lastName"
+                    ></ui-input>
+                </div>
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="Email"
+                    formControlName="email"
+                    ></ui-input>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="type === 'contestOrganizer'">
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="Name of organization"
+                    formControlName="name"
+                    ></ui-input>
+                    <ui-input
+                    class="short-field"
+                    label="Website"
+                    formControlName="website"
+                    ></ui-input>
+                </div>
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="First name"
+                    formControlName="firstName"
+                    ></ui-input>
+                    <ui-input
+                    class="short-field"
+                    label="Last name"
+                    formControlName="lastName"
+                    ></ui-input>
+                </div>
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="Email"
+                    formControlName="email"
+                    ></ui-input>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="type === 'breeder'">
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="Name of organization"
+                    formControlName="name"
+                    ></ui-input>
+                    <ui-input
+                    class="short-field"
+                    label="Email"
+                    formControlName="email"
+                    ></ui-input>
+                </div>
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="First name"
+                    formControlName="firstName"
+                    ></ui-input>
+                    <ui-input
+                    class="short-field"
+                    label="Last name"
+                    formControlName="lastName"
+                    ></ui-input>
+                </div>
+                <div class="row">
+                    <ui-input
+                    class="short-field"
+                    label="Website"
+                    formControlName="website"
+                    ></ui-input>
+                </div>
+            </ng-container>
+            <div class="row add-pet__submit">
+                <ui-button type="outline" height="tall" (click)="clear()">Clear Form</ui-button>
+                <ui-button type="primary" height="tall" (click)="submit()">Apply</ui-button>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
+
+<img
+    *ngIf="!(application$ | async)?.name && !loading"
+    src="/assets/images/ceo_cat_sitting.png"
+    alt="CEO cat sitting"
+    role="presentation"
+    height="500px"
+/>
+
+<img
+    *ngIf="(application$ | async)?.name && !loading"
+    src="/assets/images/ceo_cat_waiting.png"
+    alt="Dog with notes"
+    role="presentation"
+    height="500px"
+/>

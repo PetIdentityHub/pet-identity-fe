@@ -12,5 +12,7 @@ export interface AppConfig {
   metamaskDeepLink: string;
   chainApiUrl: string;
   proxyContractAddress: string;
+  pieceIssuerProxyContractAddress: string;
   pinataJWT: string;
+  operator: string;
 }

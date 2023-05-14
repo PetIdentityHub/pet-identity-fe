@@ -4,6 +4,7 @@ import { ContractInterface } from "ethers";
 import { petProfileNFTAbi } from "../abis/petProfileNFT.abi";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { APP_CONFIG, AppConfig } from "@pet-identity/shared";
+import { pieceIssuerNFTAbi } from "../abis/pieceIssuer.abi";
 
 export interface ipfsResponse {
   IpfsHash: string;
@@ -21,6 +22,10 @@ export class ContractsService {
 
     getPetProfileNFTAbi(): Observable<ContractInterface> {
       return of(petProfileNFTAbi.contract.abi);
+    }
+
+    getPieceIssuerNFTAbi(): Observable<ContractInterface> {
+      return of(pieceIssuerNFTAbi.contract.abi);
     }
 
     postMetadata(metadata: any): Observable<ipfsResponse> {
@@ -43,6 +48,5 @@ export class ContractsService {
       };
       return this.http.post<ipfsResponse>('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, httpOptions)
     }
-    
 }
 

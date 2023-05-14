@@ -7,6 +7,7 @@ export class PetNftContractFactory {
         signerOrProvider: Signer | providers.Web3Provider | undefined,
         contractsService: ContractsService,
     ): Promise<PetNftContract> {
+        //TODO: toPromise() is deprecated
         const abi = await contractsService.getPetProfileNFTAbi().toPromise();
         return new PetNftContract(proxyContractAddress, abi as ContractInterface, signerOrProvider);
     }
@@ -39,7 +40,6 @@ export class PetNftContract extends BaseContract {
     }
 
     public createPetProfile(name: string, chipNumber: string, metadataURI: string): Promise<any> {
-        console.log(name, chipNumber, metadataURI)
         return this._contract['createPetProfile']([name, chipNumber, `ipfs://${metadataURI}/`]);
     }
 }
