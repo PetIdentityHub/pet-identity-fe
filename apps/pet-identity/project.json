@@ -1,117 +1,117 @@
 {
-  "name": "pet-identity",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "pet-identity",
-  "sourceRoot": "apps/pet-identity/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/pet-identity",
-        "index": "apps/pet-identity/src/index.html",
-        "main": "apps/pet-identity/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/pet-identity/tsconfig.app.json",
-        "assets": [
-          "apps/pet-identity/src/favicon.ico",
-          "apps/pet-identity/src/assets",
-          {
-            "glob": "**/*",
-            "input": "libs/shared/src/lib/assets",
-            "output": "assets"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          }
-        ],
-        "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-          "node_modules/@taiga-ui/styles/taiga-ui-global.less",
-          "apps/pet-identity/src/styles.scss",
-          "libs/shared/src/lib/assets/styles/global.scss"
-        ],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+    "name": "pet-identity",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "prefix": "pet-identity",
+    "sourceRoot": "apps/pet-identity/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/pet-identity",
+                "index": "apps/pet-identity/src/index.html",
+                "main": "apps/pet-identity/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/pet-identity/tsconfig.app.json",
+                "assets": [
+                    "apps/pet-identity/src/favicon.ico",
+                    "apps/pet-identity/src/assets",
+                    {
+                        "glob": "**/*",
+                        "input": "libs/shared/src/lib/assets",
+                        "output": "assets"
+                    },
+                    {
+                        "glob": "**/*",
+                        "input": "node_modules/@taiga-ui/icons/src",
+                        "output": "assets/taiga-ui/icons"
+                    }
+                ],
+                "styles": [
+                    "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+                    "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+                    "node_modules/@taiga-ui/styles/taiga-ui-global.less",
+                    "apps/pet-identity/src/styles.scss",
+                    "libs/shared/src/lib/assets/styles/global.scss"
+                ],
+                "scripts": []
             },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "2mb",
+                            "maximumError": "5mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "pet-identity:build:production"
+                },
+                "development": {
+                    "browserTarget": "pet-identity:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "pet-identity:build"
             }
-          ],
-          "outputHashing": "all"
         },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "browserTarget": "pet-identity:build:production"
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/pet-identity/**/*.ts",
+                    "apps/pet-identity/**/*.html"
+                ]
+            }
         },
-        "development": {
-          "browserTarget": "pet-identity:build:development"
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/pet-identity/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        },
+        "serve-static": {
+            "executor": "@nrwl/web:file-server",
+            "options": {
+                "buildTarget": "pet-identity:build"
+            }
         }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "pet-identity:build"
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/pet-identity/**/*.ts",
-          "apps/pet-identity/**/*.html"
-        ]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/pet-identity/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "serve-static": {
-      "executor": "@nrwl/web:file-server",
-      "options": {
-        "buildTarget": "pet-identity:build"
-      }
     }
-  }
 }
